@@ -12,11 +12,17 @@ public class Demo001Queries {
 
     public static void main(String[] args) {
 
-        RedisGraph graph = new RedisGraph();
+        RedisGraph graph = new RedisGraph("localhost", 6379);
 
+
+        String queryString = "MATCH (a:actor{name:'Tom Cruise'})-[r:acted_in]->(m:movie) RETURN m";
+        //String queryString =  "CALL db.idx.fulltext.queryNodes('movie', 'Book') YIELD node RETURN node.title";
+
+
+        System.out.println(queryString);
 
         // find all movies with Tom Cruise
-        ResultSet resultSet = graph.query(Demo000LoadMovies.IMDB_GRAPH_NAME, "MATCH (a:actor{name:'Tom Cruise'})-[r:acted_in]->(m:movie) RETURN m");
+        ResultSet resultSet = graph.query(Demo000LoadMovies.IMDB_GRAPH_NAME, queryString); // "MATCH (a:actor{name:'Tom Cruise'})-[r:acted_in]->(m:movie) RETURN m");
         while(resultSet.hasNext()) {
             Record record = resultSet.next();
             Node movie = record.getValue("m");

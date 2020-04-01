@@ -19,11 +19,10 @@ public class Demo002WSCache {
 
 
     private JedisPool pool = null;
-    private final static int TTL = 3;
+    private final static int TTL = 120;
 
     public Demo002WSCache() {
-        pool = new JedisPool(new JedisPoolConfig(), "localhost");
-
+        pool = new JedisPool(new JedisPoolConfig(), "localhost", 6379);
         // just init the pool
         Jedis j = pool.getResource();
         j.close();

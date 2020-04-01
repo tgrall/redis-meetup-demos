@@ -9,7 +9,8 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>redis-core-demos</module>
+        <module>redis-core-jedis</module>
+        <module>redis-core-lettuce</module>
         <module>redis-graph-demos</module>
     </modules>
 

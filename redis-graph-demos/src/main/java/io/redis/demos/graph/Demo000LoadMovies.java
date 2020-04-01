@@ -17,7 +17,9 @@ public class Demo000LoadMovies {
 
     public static void main(String[] args) {
 
-        RedisGraph graph = new RedisGraph();
+        RedisGraph graph = new RedisGraph("localhost",6379);
+
+        graph.query( IMDB_GRAPH_NAME, "CALL db.idx.fulltext.createNodeIndex('movie', 'title')");
 
 
         String line = "";
